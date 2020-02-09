@@ -1,5 +1,8 @@
 # Micker
 
+[![Build Status](https://travis-ci.org/radarlog/micker.svg?branch=master)](https://travis-ci.org/radarlog/micker)
+[![Coverage Status](https://coveralls.io/repos/github/radarlog/micker/badge.svg?branch=master)](https://coveralls.io/github/radarlog/micker?branch=master)
+
 Micker (**M**ars T**icker**) is an HTTP based microservice written on PHP that receives
 the Earth (UTC) timestamp in seconds as an input and returns two values:
 * Mars Sol Date (MSD)
