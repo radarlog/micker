@@ -1,7 +1,7 @@
 <?php
 
-declare(strict_types=1);
+use Slim\App;
 
-require __DIR__ . '/../bootstrap.php';
+$container = require __DIR__ . '/../bootstrap.php';
 
-phpinfo();
+$container->get(App::class)->run();

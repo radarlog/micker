@@ -14,7 +14,12 @@
         "sort-packages": true
     },
     "require": {
-        "php": "~7.4"
+        "php": "~7.4",
+        "ext-json": "*",
+        "php-di/php-di": "^6.0",
+        "nyholm/psr7": "^1.2",
+        "nyholm/psr7-server": "^0.4.1",
+        "slim/slim": "^4.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0"
