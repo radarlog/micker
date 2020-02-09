@@ -18,9 +18,11 @@ final class Clock
 
     private string $martianCoordinatedTime;
 
-    public function __construct(int $utcTimestamp)
+    public function __construct(\DateTimeInterface $dateTime)
     {
-        $marsSolDate = ($utcTimestamp + self::LEAP_SECONDS) / self::SECONDS_PER_SOL + 34127.2954262;
+        $timestamp = $dateTime->getTimestamp();
+
+        $marsSolDate = ($timestamp + self::LEAP_SECONDS) / self::SECONDS_PER_SOL + 34127.2954262;
 
         $this->marsSolDate = round($marsSolDate, self::MSD_PRECISION, PHP_ROUND_HALF_UP);
 
