@@ -21,7 +21,7 @@ composer: ; $(info Installing dependencies:)
 
 .PHONY: run
 run: composer up ; $(info Environment has been built succesfully)
-	echo -e "Now open http://localhost:8080/ in the browser"
+	echo -e "Now open http://localhost:8080/index.html in the browser"
 
 .PHONY: tests
 tests: composer ; $(info Running tests:)

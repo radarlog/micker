@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="/assets/swagger-ui.css">
+</head>
+
+<body>
+<div id="swagger-ui"></div>
+<script src="/assets/swagger-ui.js"></script>
+<script>
+    window.onload = function () {
+        window.ui = SwaggerUIBundle({
+            dom_id: '#swagger-ui',
+            deepLinking: true,
+            presets: [SwaggerUIBundle.presets.apis],
+            url: window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/open-api.json"
+        });
+    }
+</script>
+</body>
+</html>

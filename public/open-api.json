@@ -1,0 +1,69 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Micker API",
+        "description": "A microservice calculating the Mars Sol Date (MSD) and the Martian Coordinated Time (MTC) based on the time on Earth in UTC",
+        "version": "1.0",
+        "license": {
+            "name": "MIT"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Micker Api Server"
+        }
+    ],
+    "paths": {
+        "/api/v1/time/{timestamp}": {
+            "get": {
+                "tags": [
+                    "Time"
+                ],
+                "summary": "request Mars time by UTC timestamp",
+                "parameters": [
+                    {
+                        "name": "timestamp",
+                        "in": "path",
+                        "description": "UTC timestamp in seconds",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mars time",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MarsTime"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "MarsTime": {
+                "required": [
+                    "mars_sol_date",
+                    "martian_coordinated_time"
+                ],
+                "properties": {
+                    "mars_sol_date": {
+                        "type": "number"
+                    },
+                    "martian_coordinated_time": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
