@@ -1,0 +1,22 @@
+dist: xenial
+sudo: false
+language: php
+
+php:
+    - '7.4'
+
+cache:
+    directories:
+        - $HOME/.composer/cache
+
+install:
+    - composer validate --no-interaction --strict
+    - composer install --no-interaction --no-suggest
+
+script:
+    - mkdir -p build/logs
+    - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+after_success:
+    - travis_retry wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.2.0/php-coveralls.phar
+    - travis_retry php php-coveralls.phar -e test -x build/logs/clover.xml -o build/logs/coveralls.json
