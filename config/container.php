@@ -11,6 +11,8 @@ return [
         AppFactory::setContainer($container);
         $app = AppFactory::create();
 
+        (require __DIR__ . '/routes.php')($app);
+
         $app->addRoutingMiddleware();
         $app->addErrorMiddleware(true, true, true);
 
