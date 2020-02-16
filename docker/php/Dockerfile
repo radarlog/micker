@@ -1,4 +1,4 @@
-FROM php:7.4-alpine3.11 as development
+FROM php:7.4-fpm-alpine3.11 as development
 
 ENV WORK_DIR /app
 
@@ -28,6 +28,6 @@ COPY . $WORK_DIR
 
 WORKDIR $WORK_DIR
 
-EXPOSE 8080
+EXPOSE 9000
 
-CMD ["php", "-S", "0.0.0.0:8080", "$WORK_DIR/public/index.php"]
+CMD ["php-fpm", "--nodaemonize"]
