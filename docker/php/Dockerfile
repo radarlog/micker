@@ -20,7 +20,9 @@ RUN set -e \
     && docker-php-ext-install \
         opcache \
     #
-    # Compile Xdebug extension
+    # Compile PCOV and Xdebug extensions
+    && yes | pecl install pcov \
+    && docker-php-ext-enable pcov \
     && yes | pecl install xdebug-$XDEBUG_VERSION \
     #
     # Clean up

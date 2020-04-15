@@ -25,4 +25,4 @@ run: composer up ; $(info Environment has been built succesfully)
 
 .PHONY: tests
 tests: composer ; $(info Running tests:)
-	docker-compose run -T --rm php vendor/bin/phpunit -d pcov.enabled=1
+	docker-compose run -T --rm php vendor/bin/phpunit
