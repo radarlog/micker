@@ -6,7 +6,7 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
 COPY --from=composer:latest /usr/bin/composer /usr/bin
 
-ENV XDEBUG_VERSION 2.9.2
+ENV XDEBUG_VERSION 2.9.3
 ENV PHP_XDEBUG_ENABLE 1
 
 RUN set -e \
