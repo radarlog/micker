@@ -18,7 +18,7 @@ build:
                 override:
                     - php-scrutinizer-run
                     - phpcs-run
-                    -   command: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+                    -   command: vendor/bin/phpunit --coverage-clover clover.xml
                         coverage:
-                            file: build/logs/clover.xml
+                            file: clover.xml
                             format: clover
