@@ -7,7 +7,7 @@ use Slim\App;
 use Slim\Factory\AppFactory;
 
 return [
-    App::class => function (ContainerInterface $container) {
+    App::class => static function (ContainerInterface $container) {
         AppFactory::setContainer($container);
         $app = AppFactory::create();
 

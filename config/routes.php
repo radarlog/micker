@@ -6,9 +6,9 @@ use Radarlog\Micker\Infrastructure\Api\Controller;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
-return function (App $app) {
-    $app->group('/api/v1', function (RouteCollectorProxy $group) {
-
+return static function (App $app): void {
+    // phpcs:disable SlevomatCodingStandard.Functions.StaticClosure
+    $app->group('/api/v1', function (RouteCollectorProxy $group): void {
         $group->get('/time/{timestamp:[0-9]+}', Controller\Timestamp::class);
     });
 };
