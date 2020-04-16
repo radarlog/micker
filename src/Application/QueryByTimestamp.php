@@ -8,13 +8,9 @@ use Radarlog\Micker\Domain;
 
 final class QueryByTimestamp
 {
-    public function __construct()
-    {
-    }
-
     public function __invoke(int $timestamp): Domain\Clock
     {
-        $datetime = new \DateTimeImmutable("@$timestamp");
+        $datetime = new \DateTimeImmutable(sprintf('@%d', $timestamp));
 
         return new Domain\Clock($datetime);
     }

@@ -23,6 +23,10 @@ composer: ; $(info Installing dependencies:)
 run: composer up ; $(info Environment has been built succesfully)
 	echo -e "Now open http://localhost:8080/index.html in the browser"
 
+.PHONY: styles-check
+styles-check: ; $(info $(M) Checking coding style:)
+	docker-compose run -T --rm php vendor/bin/phpcs -ps
+
 .PHONY: tests
-tests: composer ; $(info Running tests:)
+tests: composer styles-check ; $(info Running tests:)
 	docker-compose run -T --rm php vendor/bin/phpunit

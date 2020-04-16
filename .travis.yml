@@ -18,8 +18,11 @@ install:
     - composer validate --no-interaction --strict
     - composer install --no-interaction --no-suggest
 
-script:
+before_script:
     - mkdir -p build/logs
+
+script:
+    - vendor/bin/phpcs -ps
     - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_success:

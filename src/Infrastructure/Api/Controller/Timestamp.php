@@ -33,7 +33,7 @@ final class Timestamp implements Controller
         return new Response(
             self::HTTP_OK,
             ['content-type' => 'application/json'],
-            json_encode($body)
+            json_encode($body),
         );
     }
 }
