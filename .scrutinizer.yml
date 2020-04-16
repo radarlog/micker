@@ -11,11 +11,11 @@ checks:
     php: true
 
 build:
+    environment:
+        php:
+            version: 7.4
     nodes:
         analysis:
-            environment:
-                php:
-                    version: 7.4
             project_setup:
                 override: true
             tests:
