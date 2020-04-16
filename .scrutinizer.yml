@@ -1,8 +1,7 @@
 filter:
     paths:
         - src/
-    dependency_paths:
-        - vendor/
+        - tests/
 
 checks:
     php: true
