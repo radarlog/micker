@@ -48,7 +48,7 @@ class TimestampTest extends TestCase
 
     public function testBody(): void
     {
-        $json = json_decode((string) $this->response->getBody(), true);
+        $json = json_decode((string) $this->response->getBody(), true, 512, JSON_THROW_ON_ERROR);
 
         self::assertEquals(self::RESPONSE, $json);
     }

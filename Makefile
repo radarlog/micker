@@ -27,6 +27,11 @@ run: composer up ; $(info Environment has been built succesfully)
 styles-check: ; $(info $(M) Checking coding style:)
 	docker-compose run -T --rm php vendor/bin/phpcs -ps
 
+.PHONY: static-analysis
+static-analysis: ; $(info $(M) Performing static analyze:)
+	docker-compose run -T --rm php vendor/bin/phpstan analyse
+	docker-compose run -T --rm php vendor/bin/psalm
+
 .PHONY: tests
-tests: composer styles-check ; $(info Running tests:)
+tests: composer styles-check static-analysis ; $(info Running tests:)
 	docker-compose run -T --rm php vendor/bin/phpunit

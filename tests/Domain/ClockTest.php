@@ -9,11 +9,14 @@ use Radarlog\Micker\Domain\Clock;
 
 class ClockTest extends TestCase
 {
+    /**
+     * @return iterable<string,array{\DateTimeInterface,float}>
+     */
     public function marsSolDateProvider(): iterable
     {
-        yield [new \DateTimeImmutable('8 Feb 2020 06:45:17 UTC'), 51937.94038];
-        yield [new \DateTimeImmutable('9 Feb 2020 14:44:22 UTC'), 51939.23742];
-        yield [new \DateTimeImmutable('2 Feb 2222 22:22:22 UTC'), 123737.72517];
+        yield '8 Feb 2020' => [new \DateTimeImmutable('8 Feb 2020 06:45:17 UTC'), 51937.94038];
+        yield '9 Feb 2020' => [new \DateTimeImmutable('9 Feb 2020 14:44:22 UTC'), 51939.23742];
+        yield '2 Feb 2222' => [new \DateTimeImmutable('2 Feb 2222 22:22:22 UTC'), 123737.72517];
     }
 
     /**
@@ -26,11 +29,14 @@ class ClockTest extends TestCase
         self::assertSame($marsSolDate, $clock->marsSolDate());
     }
 
+    /**
+     * @return iterable<string,array{\DateTimeInterface,string}>
+     */
     public function martianCoordinatedTime(): iterable
     {
-        yield [new \DateTimeImmutable('8 Feb 2020 06:45:17 UTC'), '22:34:09'];
-        yield [new \DateTimeImmutable('9 Feb 2020 14:44:22 UTC'), '05:41:53'];
-        yield [new \DateTimeImmutable('2 Feb 2222 22:22:22 UTC'), '17:24:15'];
+        yield '8 Feb 2020' => [new \DateTimeImmutable('8 Feb 2020 06:45:17 UTC'), '22:34:09'];
+        yield '9 Feb 2020' => [new \DateTimeImmutable('9 Feb 2020 14:44:22 UTC'), '05:41:53'];
+        yield '2 Feb 2222' => [new \DateTimeImmutable('2 Feb 2222 22:22:22 UTC'), '17:24:15'];
     }
 
     /**
