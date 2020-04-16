@@ -22,13 +22,22 @@ final class Clock
     {
         $timestamp = $dateTime->getTimestamp();
 
+        $this->marsSolDate = $this->calculateMarsSolDate($timestamp);
+        $this->martianCoordinatedTime = $this->calculateMartianCoordinatedTime($this->marsSolDate);
+    }
+
+    private function calculateMarsSolDate(int $timestamp): float
+    {
         $marsSolDate = ($timestamp + self::LEAP_SECONDS) / self::SECONDS_PER_SOL + 34127.2954262;
 
-        $this->marsSolDate = round($marsSolDate, self::MSD_PRECISION, PHP_ROUND_HALF_UP);
+        return round($marsSolDate, self::MSD_PRECISION, PHP_ROUND_HALF_UP);
+    }
 
+    private function calculateMartianCoordinatedTime(float $marsSolDate): string
+    {
         $martianCoordinatedTime = round(fmod($marsSolDate, 1) * 86400, 0, PHP_ROUND_HALF_UP);
 
-        $this->martianCoordinatedTime = gmdate(self::MCT_FORMAT, (int) $martianCoordinatedTime);
+        return gmdate(self::MCT_FORMAT, (int) $martianCoordinatedTime);
     }
 
     public function marsSolDate(): float
