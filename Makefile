@@ -29,8 +29,8 @@ styles-check: ; $(info $(M) Checking coding style:)
 
 .PHONY: static-analysis
 static-analysis: ; $(info $(M) Performing static analyze:)
-	docker-compose run -T --rm php vendor/bin/phpstan analyse
-	docker-compose run -T --rm php vendor/bin/psalm
+	docker-compose run -T --rm php vendor/bin/phpstan analyse --ansi
+	docker-compose run -T --rm php vendor/bin/psalm --taint-analysis
 
 .PHONY: tests
 tests: composer styles-check static-analysis ; $(info Running tests:)
