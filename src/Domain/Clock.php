@@ -6,9 +6,13 @@ namespace Radarlog\Micker\Domain;
 
 final class Clock
 {
+    private const SECONDS_PER_DAY = 86400;
+
     private const SECONDS_PER_SOL = 88775.244147;
 
     private const LEAP_SECONDS = 37;
+
+    private const CORRECTION = 34127.2954262;
 
     private const MSD_PRECISION = 5;
 
@@ -28,14 +32,14 @@ final class Clock
 
     private function calculateMarsSolDate(int $timestamp): float
     {
-        $marsSolDate = ($timestamp + self::LEAP_SECONDS) / self::SECONDS_PER_SOL + 34127.2954262;
+        $marsSolDate = ($timestamp + self::LEAP_SECONDS) / self::SECONDS_PER_SOL + self::CORRECTION;
 
         return round($marsSolDate, self::MSD_PRECISION, PHP_ROUND_HALF_UP);
     }
 
     private function calculateMartianCoordinatedTime(float $marsSolDate): string
     {
-        $martianCoordinatedTime = round(fmod($marsSolDate, 1) * 86400, 0, PHP_ROUND_HALF_UP);
+        $martianCoordinatedTime = round(fmod($marsSolDate, 1) * self::SECONDS_PER_DAY, 0, PHP_ROUND_HALF_UP);
 
         return gmdate(self::MCT_FORMAT, (int) $martianCoordinatedTime);
     }
