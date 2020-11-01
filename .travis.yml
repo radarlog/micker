@@ -12,6 +12,7 @@ before_install:
     - pecl channel-update pecl.php.net
     - yes | pecl install pcov
     - phpenv config-rm xdebug.ini
+    - composer self-update --2
 
 install:
     - composer validate --ansi --no-interaction --strict
