@@ -4,10 +4,10 @@ ENV WORK_DIR /app
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
-COPY --from=composer:1.10 /usr/bin/composer /usr/bin
+COPY --from=composer:2.0 /usr/bin/composer /usr/bin
 
 ENV PCOV_VERSION 1.0.6
-ENV XDEBUG_VERSION 2.9.6
+ENV XDEBUG_VERSION 2.9.8
 ENV PHP_XDEBUG_ENABLE 1
 
 RUN set -e \
