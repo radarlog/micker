@@ -1,5 +1,6 @@
 /.env
 
+/var/
 /vendor/
 
 /phpunit.xml
