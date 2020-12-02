@@ -24,7 +24,7 @@ final class Clock
 
     public function __construct(\DateTimeInterface $dateTime)
     {
-        $timestamp = $dateTime->getTimestamp();
+        $timestamp = (int) $dateTime->getTimestamp();
 
         $this->marsSolDate = $this->calculateMarsSolDate($timestamp);
         $this->martianCoordinatedTime = $this->calculateMartianCoordinatedTime($this->marsSolDate);

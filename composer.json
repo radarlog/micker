@@ -14,7 +14,7 @@
         "sort-packages": true
     },
     "require": {
-        "php": "~7.4",
+        "php": ">=7.4",
         "ext-json": "*",
         "php-di/php-di": "^6.3",
         "nyholm/psr7": "^1.3",
