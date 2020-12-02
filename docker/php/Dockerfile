@@ -7,8 +7,7 @@ ENV COMPOSER_HOME /tmp
 COPY --from=composer:2.0 /usr/bin/composer /usr/bin
 
 ENV PCOV_VERSION 1.0.6
-ENV XDEBUG_VERSION 2.9.8
-ENV PHP_XDEBUG_ENABLE 1
+ENV XDEBUG_VERSION 3.0.0
 
 RUN set -e \
 	&& cd /tmp \
@@ -25,6 +24,7 @@ RUN set -e \
     && yes | pecl install pcov-$PCOV_VERSION \
     && docker-php-ext-enable pcov \
     && yes | pecl install xdebug-$XDEBUG_VERSION \
+    && docker-php-ext-enable xdebug \
     #
     # Clean up
     && apk del --purge $PHPIZE_DEPS \
@@ -44,10 +44,9 @@ ENV PHP_OPCACHE_MAX_ACCELERATED_FILES 5000
 ENV PHP_OPCACHE_REVALIDATE_FREQ 2
 ENV PHP_OPCACHE_SAVE_COMMENTS 1
 
-COPY php.ini $PHP_INI_DIR/
-COPY xdebug.ini $PHP_INI_DIR/conf.d/
+ENV XDEBUG_MODE debug
 
-COPY . $WORK_DIR
+COPY php.ini $PHP_INI_DIR/
 
 WORKDIR $WORK_DIR
 
