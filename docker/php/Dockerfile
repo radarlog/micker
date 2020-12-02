@@ -15,20 +15,20 @@ RUN set -e \
     # Install dependencies
     && apk --no-cache add --update $PHPIZE_DEPS \
     #
+    # Add PCOV and Xdebug extensions
+    && pecl bundle -d /usr/src/php/ext pcov-$PCOV_VERSION \
+    && pecl bundle -d /usr/src/php/ext xdebug-$XDEBUG_VERSION \
+    #
     # Configure and install extensions
     && export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
     && docker-php-ext-install \
         opcache \
-    #
-    # Compile PCOV and Xdebug extensions
-    && yes | pecl install pcov-$PCOV_VERSION \
-    && docker-php-ext-enable pcov \
-    && yes | pecl install xdebug-$XDEBUG_VERSION \
-    && docker-php-ext-enable xdebug \
+        pcov \
+        xdebug \
     #
     # Clean up
     && apk del --purge $PHPIZE_DEPS \
-    && rm -rf /tmp/* /var/cache/apk/*
+    && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
 
 ENV PHP_DISPLAY_ERRORS 1
 ENV PHP_EXPOSE 0
