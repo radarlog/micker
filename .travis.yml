@@ -21,7 +21,7 @@ install:
 script:
     - vendor/bin/phpcs -ps
     - vendor/bin/phpstan analyse --ansi --no-progress
-    - vendor/bin/psalm --no-progress --taint-analysis
+    - vendor/bin/psalm --no-progress --threads=8
     - vendor/bin/phpunit --coverage-clover clover.xml
 
 after_success:

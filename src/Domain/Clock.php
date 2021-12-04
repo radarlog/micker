@@ -6,7 +6,7 @@ namespace Radarlog\Micker\Domain;
 
 final class Clock
 {
-    private const SECONDS_PER_DAY = 86400;
+    private const SECONDS_PER_DAY = 86400.0;
 
     private const SECONDS_PER_SOL = 88775.244147;
 
@@ -32,7 +32,7 @@ final class Clock
 
     private function calculateMarsSolDate(int $timestamp): float
     {
-        $marsSolDate = ($timestamp + self::LEAP_SECONDS) / self::SECONDS_PER_SOL + self::CORRECTION;
+        $marsSolDate = (float) ($timestamp + self::LEAP_SECONDS) / self::SECONDS_PER_SOL + self::CORRECTION;
 
         return round($marsSolDate, self::MSD_PRECISION, PHP_ROUND_HALF_UP);
     }
