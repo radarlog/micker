@@ -20,7 +20,6 @@ services:
         restart: on-failure
         volumes:
             - ./:/app:rw
-        user: ${HOST_UID:-1000}:${HOST_GID:-1001}
         environment:
             XDEBUG_MODE: debug
             XDEBUG_CONFIG: >-
