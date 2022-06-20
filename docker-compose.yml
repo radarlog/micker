@@ -4,8 +4,7 @@ services:
     nginx:
         depends_on:
             - php
-        container_name: doop-nginx
-        image: nginx:1.19-alpine
+        image: nginx:1.22-alpine
         restart: on-failure
         volumes:
             - ./:/app:ro

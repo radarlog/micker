@@ -1,5 +1,5 @@
-ARG PHP_FPM_IMAGE=php:8.0-fpm-alpine3.15
-ARG COMPOSER_IMAGE=composer:2.1
+ARG PHP_FPM_IMAGE=php:8.1-fpm-alpine3.16
+ARG COMPOSER_IMAGE=composer:2.3
 
 # development dependencies
 FROM $COMPOSER_IMAGE AS composer
@@ -10,8 +10,8 @@ ENV WORK_DIR /app
 
 COPY --from=composer /usr/bin/composer /usr/bin
 
-ENV PCOV_VERSION 1.0.10
-ENV XDEBUG_VERSION 3.1.1
+ENV PCOV_VERSION 1.0.11
+ENV XDEBUG_VERSION 3.1.5
 
 RUN set -e \
 	&& cd /tmp \
