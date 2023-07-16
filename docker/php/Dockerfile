@@ -1,39 +1,29 @@
-ARG PHP_FPM_IMAGE=php:8.1-fpm-alpine3.16
-ARG COMPOSER_IMAGE=composer:2.3
+ARG PHP_FPM_IMAGE=php:8.2-fpm-alpine3.18
+ARG COMPOSER_IMAGE=composer:2.5
+ARG PHP_EXTENSION_INSTALLER=mlocati/php-extension-installer:2.1
 
 # development dependencies
+FROM $PHP_EXTENSION_INSTALLER AS php_extension_installer
 FROM $COMPOSER_IMAGE AS composer
 
+# development
 FROM $PHP_FPM_IMAGE as development
 
 ENV WORK_DIR /app
 
-COPY --from=composer /usr/bin/composer /usr/bin
+ARG PCOV_VERSION=1.0.11
+ARG XDEBUG_VERSION=3.2.1
 
-ENV PCOV_VERSION 1.0.11
-ENV XDEBUG_VERSION 3.1.5
+COPY --from=php_extension_installer /usr/bin/install-php-extensions /usr/local/bin/
+COPY --from=composer /usr/bin/composer /usr/local/bin/
 
 RUN set -e \
-	&& cd /tmp \
     #
     # Install dependencies
-    && apk --no-cache add --update $PHPIZE_DEPS \
-    #
-    # Add PCOV and Xdebug extensions
-    && pecl bundle -d /usr/src/php/ext pcov-$PCOV_VERSION \
-    && pecl bundle -d /usr/src/php/ext xdebug-$XDEBUG_VERSION \
-    #
-    # Configure and install extensions
-    && export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
-    && docker-php-ext-install \
-        opcache \
-        pcntl \
-        pcov \
-        xdebug \
-    #
-    # Clean up
-    && apk del --purge $PHPIZE_DEPS \
-    && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
+    && install-php-extensions opcache \
+    && install-php-extensions pcntl \
+    && install-php-extensions pcov-$PCOV_VERSION \
+    && install-php-extensions xdebug-$XDEBUG_VERSION
 
 ENV PHP_DISPLAY_ERRORS 1
 ENV PHP_EXPOSE 0

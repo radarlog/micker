@@ -34,4 +34,4 @@ static-analysis: ; $(info $(M) Performing static analyze:)
 
 .PHONY: tests
 tests: composer styles-check static-analysis ; $(info Running tests:)
-	docker-compose run -T --rm php vendor/bin/phpunit
+	docker-compose run -T --rm php vendor/bin/phpunit --colors=always

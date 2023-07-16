@@ -4,6 +4,8 @@
     allowNamedArgumentCalls="false"
     cacheDirectory="var/cache/psalm/"
     errorLevel="1"
+    findUnusedBaselineEntry="true"
+    findUnusedCode="false"
     findUnusedPsalmSuppress="true"
     ignoreInternalFunctionFalseReturn="false"
     ignoreInternalFunctionNullReturn="false"

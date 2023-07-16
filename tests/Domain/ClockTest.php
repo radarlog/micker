@@ -12,7 +12,7 @@ class ClockTest extends TestCase
     /**
      * @return iterable<string,array{\DateTimeInterface,float}>
      */
-    public function marsSolDateProvider(): iterable
+    public static function marsSolDateProvider(): iterable
     {
         yield '8 Feb 2020' => [new \DateTimeImmutable('8 Feb 2020 06:45:17 UTC'), 51937.94038];
         yield '9 Feb 2020' => [new \DateTimeImmutable('9 Feb 2020 14:44:22 UTC'), 51939.23742];
@@ -32,7 +32,7 @@ class ClockTest extends TestCase
     /**
      * @return iterable<string,array{\DateTimeInterface,string}>
      */
-    public function martianCoordinatedTime(): iterable
+    public static function martianCoordinatedTime(): iterable
     {
         yield '8 Feb 2020' => [new \DateTimeImmutable('8 Feb 2020 06:45:17 UTC'), '22:34:09'];
         yield '9 Feb 2020' => [new \DateTimeImmutable('9 Feb 2020 14:44:22 UTC'), '05:41:53'];
